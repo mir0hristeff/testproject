@@ -7,12 +7,11 @@ import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
 import enums.StatusCode;
 
-import java.util.Map;
 
 public class Request {
     private static Gson gson = new GsonBuilder().serializeNulls().serializeSpecialFloatingPointValues().create();
 
-    public static  Response POST(String url, Map body, StatusCode statusCode){
+    public static  Response POST(String url, Object body, StatusCode statusCode){
         Response response = createRequestSpecification()
                 .body(gson.toJson(body))
                 .when()
@@ -26,6 +25,23 @@ public class Request {
                 .when()
                 .expect().statusCode(statusCode.getStatusCode())
                 .get(url);
+        return response;
+    }
+
+    public static Response PUT(String url, Object body, StatusCode statusCode ) {
+        Response response = createRequestSpecification()
+                .body(gson.toJson(body))
+                .when()
+                .expect().statusCode(statusCode.getStatusCode())
+                .put(url);
+        return response;
+    }
+
+    public static Response DELETE(String url, StatusCode statusCode) {
+        Response response = createRequestSpecification()
+                .when()
+                .expect().statusCode(statusCode.getStatusCode())
+                .delete();
         return response;
     }
 
