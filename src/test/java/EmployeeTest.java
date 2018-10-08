@@ -1,5 +1,6 @@
 import com.jayway.restassured.response.Response;
 import core.Request;
+import endpoints.Employee;
 import enums.StatusCode;
 import org.testng.annotations.Test;
 
@@ -10,12 +11,12 @@ import java.util.Map;
 public class EmployeeTest extends TestFixtures{
 
     @Test
-    public void get_all_employees_asJason() {
+    public void getAllemployeesAsJason() {
        Response rc =  Request.GET(employees, StatusCode.OK);
     }
 
     @Test
-    public void create_a_new_employee() {
+    public void createNewEmployee() {
         Map<String, String> requestBody = new HashMap<String, String>();
         requestBody.put("name","newOne" + new Date().getTime());
         requestBody.put("salary", "3333");
