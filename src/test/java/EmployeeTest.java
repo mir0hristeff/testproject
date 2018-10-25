@@ -1,6 +1,5 @@
 import com.jayway.restassured.response.Response;
 import core.Request;
-import endpoints.Employee;
 import enums.StatusCode;
 import org.testng.annotations.Test;
 
