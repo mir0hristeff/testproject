@@ -12,7 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <gatling.version>3.0.0</gatling.version>
         <gatling-plugin.version>3.0.0</gatling-plugin.version>
-        <scala-maven-plugin.version>3.3.2</scala-maven-plugin.version>
+        <scala-maven-plugin.version>3.4.2</scala-maven-plugin.version>
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
     </properties>
 
@@ -67,14 +67,20 @@
                 <groupId>io.gatling</groupId>
                 <artifactId>gatling-maven-plugin</artifactId>
                 <version>${gatling-plugin.version}</version>
+                <configuration>
+                   <!-- <disableCompiler>true</disableCompiler> -->
+                </configuration>
                 <executions>
                     <execution>
+                        <configuration>
+                            <simulationsFolder>src/test/scala/simulations</simulationsFolder>
+                            <runMultipleSimulations>true</runMultipleSimulations>
+                                <includes>EmployeesSimulation</includes>
+                                <excludes>TestSimulation</excludes>
+                        </configuration>
                         <goals>
                             <goal>test</goal>
                         </goals>
-                        <configuration>
-                            <simulationClass>test-project.simulation.TestSimulation</simulationClass>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -83,8 +89,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>1.6</source>
+                    <target>1.6</target>
                 </configuration>
             </plugin>
         </plugins>

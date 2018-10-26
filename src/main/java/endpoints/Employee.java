@@ -23,6 +23,10 @@ public class Employee {
 
     }
 
+    public static void getAllemployeesAsJason() {
+        Response rc =  Request.GET("http://dummy.restapiexample.com/api/v1/employees", StatusCode.OK);
+    }
+
     public String getName() {
         return name;
     }
